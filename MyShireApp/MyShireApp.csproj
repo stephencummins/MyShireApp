@@ -22,6 +22,7 @@
     <WorkflowPartId>{f2f3514c-2ee8-4241-8ce7-1674ac89b885}</WorkflowPartId>
     <CspkgPartId>{2f467d1c-f849-4106-8191-a7f5e68375be}</CspkgPartId>
     <SqlPackagePartId>{7ebba727-e5f4-4c61-8a80-3b4c81e0a478}</SqlPackagePartId>
+    <ActivePublishProfile>CE-App-Test - Web Deploy</ActivePublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,11 +44,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="AppIcon.png">
-      <OpcRelationship>manifest-icon</OpcRelationship>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <AppManifestFile Include="AppManifest.xml">
       <SubType>Designer</SubType>
     </AppManifestFile>
@@ -65,6 +61,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{24d5f9b7-3cce-4ea5-8d52-2853cd994430}</FeatureId>
+    </None>
+    <None Include="Package\Package.package">
+      <PackageId>{a46a3358-683b-4a83-a9f5-1769d7860334}</PackageId>
+    </None>
+    <None Include="SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{db2cecdb-7c80-4f20-8313-e1089f7f8d97}</SharePointProjectItemId>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Elements.xml" />
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
+    <Content Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </Content>
+    <Content Include="AppIcon.png">
+      <OpcRelationship>manifest-icon</OpcRelationship>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

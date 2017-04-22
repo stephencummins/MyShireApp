@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.S2S.Protocols.OAuth2;
 using Microsoft.IdentityModel.S2S.Tokens;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.EventReceivers;
+using Microsoft.ProjectServer.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,6 +44,39 @@ namespace MyShireAppWeb
         #endregion public fields
 
         #region public methods
+
+        //Project Online Context
+        public static ProjectContext GetProjectContextWithContextToken(
+                    string targetUrl,
+                    string contextTokenString,
+                    string appHostUrl)
+        {
+            SharePointContextToken contextToken = ReadAndValidateContextToken(contextTokenString, appHostUrl);
+
+            Uri targetUri = new Uri(targetUrl);
+
+            string accessToken = GetAccessToken(contextToken, targetUri.Authority).AccessToken;
+            return GetProjectContextWithAccessToken(targetUrl, accessToken);
+        }
+
+        public static ProjectContext GetProjectContextWithAccessToken(string targetUrl, string accessToken)
+        {
+            Uri targetUri = new Uri(targetUrl);
+
+            ProjectContext projectContext = new ProjectContext(targetUrl);
+
+            projectContext.AuthenticationMode = ClientAuthenticationMode.Anonymous;
+            projectContext.FormDigestHandlingEnabled = false;
+            projectContext.ExecutingWebRequest +=
+                delegate (object oSender, WebRequestEventArgs webRequestEventArgs)
+                {
+                    webRequestEventArgs.WebRequestExecutor.RequestHeaders["Authorization"] =
+                        "Bearer " + accessToken;
+                };
+
+            return projectContext;
+        }
+
 
         /// <summary>
         /// Retrieves the context token string from the specified request by looking for well-known parameter names in the 

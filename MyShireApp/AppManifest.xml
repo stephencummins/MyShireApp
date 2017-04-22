@@ -3,7 +3,7 @@
 <App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
      Name="MyShireApp"
      ProductID="{68cb2633-e143-42e3-88dc-f0c9a9b07840}"
-     Version="1.0.0.0"
+     Version="1.0.0.3"
      SharePointMinVersion="16.0.0.0"
 >
   <Properties>
@@ -12,6 +12,9 @@
   </Properties>
 
   <AppPrincipal>
-    <RemoteWebApplication ClientId="*" />
+    <RemoteWebApplication ClientId="20c9484e-a403-4d39-8760-1fb07e20b97f" />
   </AppPrincipal>
+  <AppPermissionRequests>
+    <AppPermissionRequest Scope="http://sharepoint/projectserver/projects" Right="Write" />
+  </AppPermissionRequests>
 </App>

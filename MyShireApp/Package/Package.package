@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="5cf5d904-13f6-43c3-bb25-4eef1e4bd3b1" solutionId="5cf5d904-13f6-43c3-bb25-4eef1e4bd3b1" resetWebServer="false" sharePointProductVersion="16.0" name="MyShireApp" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="24d5f9b7-3cce-4ea5-8d52-2853cd994430" />
+  </features>
+</package>

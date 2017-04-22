@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyShireAppWeb.Utilities;
+using MyShireAppWeb.Models;
 
 namespace MyShireAppWeb.Controllers
 {
@@ -28,6 +30,23 @@ namespace MyShireAppWeb.Controllers
 
                     ViewBag.UserName = spUser.Title;
                 }
+            }
+
+            //Project Context
+            using (var projectContext = ContextHelper.GetClientContext(Request.Url))
+            {
+                // Query the Project Context
+                //projectContext.Load(projectContext.Projects);
+                // projectContext.ExecuteQuery();
+
+                //projectContext.Load(projectContext.Web, web => web.Title);
+                //projectContext.ExecuteQuery();
+                //ViewBag.Message = projectContext.Web.Title;
+
+                PWAUtility pwaUtil = new PWAUtility();
+
+                List<PWAAssignment> PWA_ResourceAssignment = pwaUtil.ResourceAssignments(projectContext);
+                ViewBag.Message = "Hello, I work!";
             }
 
             return View();
